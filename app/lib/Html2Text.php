@@ -1,6 +1,4 @@
-<?php
-
-/** @noinspection PhpUndefinedClassInspection */
+<?php /** @noinspection PhpVoidFunctionResultUsedInspection */
 
 /*
  * Copyright (c) 2005-2007 Jon Abernathy <jon@chuggnutt.com>
