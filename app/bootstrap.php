@@ -1,5 +1,7 @@
 <?php
 
+namespace app;
+
 static $loaded = false;
 if ($loaded) {
     return true;

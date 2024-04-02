@@ -10,7 +10,7 @@
 <body>
 
 <?php
-require __DIR__ . '/app/bootstrap.php';
+require __DIR__ . '/../app/bootstrap.php';
 ?>
 
 <h1>OhMyIES</h1>

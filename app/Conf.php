@@ -1,5 +1,7 @@
 <?php
 
+namespace app;
+
 class Conf
 {
     static public function loadApiConf(): array

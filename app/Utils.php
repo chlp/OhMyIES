@@ -1,5 +1,9 @@
 <?php
 
+namespace app;
+
+use DateTime;
+
 class Utils
 {
     private const ID_LENGTH = 32;

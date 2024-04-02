@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpUndefinedClassInspection */
+
 /*
  * Copyright (c) 2005-2007 Jon Abernathy <jon@chuggnutt.com>
  *
@@ -16,6 +18,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  */
+
+namespace app\lib;
 
 class Html2Text
 {
@@ -212,14 +216,14 @@ class Html2Text
      */
     protected $options = array(
         'do_links' => 'inline', // 'none'
-                                // 'inline' (show links inline)
-                                // 'nextline' (show links on the next line)
-                                // 'table' (if a table of link URLs should be listed after the text.
-                                // 'bbcode' (show links as bbcode)
+        // 'inline' (show links inline)
+        // 'nextline' (show links on the next line)
+        // 'table' (if a table of link URLs should be listed after the text.
+        // 'bbcode' (show links as bbcode)
 
         'width' => 70,          //  Maximum width of the formatted text, in columns.
-                                //  Set this value to 0 (or less) to ignore word wrapping
-                                //  and not constrain text to a fixed-width column.
+        //  Set this value to 0 (or less) to ignore word wrapping
+        //  and not constrain text to a fixed-width column.
     );
 
     private function legacyConstruct($html = '', $fromFile = false, array $options = array())
@@ -229,8 +233,8 @@ class Html2Text
     }
 
     /**
-     * @param string $html    Source HTML
-     * @param array  $options Set configuration options
+     * @param string $html Source HTML
+     * @param array $options Set configuration options
      */
     public function __construct($html = '', $options = array())
     {
@@ -247,10 +251,10 @@ class Html2Text
     }
 
     /**
-    * Get the source HTML
-    *
-    * @return string
-    */
+     * Get the source HTML
+     *
+     * @return string
+     */
     public function getHtml()
     {
         return $this->html;
@@ -337,12 +341,12 @@ class Html2Text
 
     protected function convert()
     {
-       $origEncoding = mb_internal_encoding();
-       mb_internal_encoding(self::ENCODING);
+        $origEncoding = mb_internal_encoding();
+        mb_internal_encoding(self::ENCODING);
 
-       $this->doConvert();
+        $this->doConvert();
 
-       mb_internal_encoding($origEncoding);
+        mb_internal_encoding($origEncoding);
     }
 
     protected function doConvert()
@@ -402,9 +406,9 @@ class Html2Text
      * appeared. Also makes an effort at identifying and handling absolute
      * and relative links.
      *
-     * @param  string $link          URL of the link
-     * @param  string $display       Part of the text to associate number with
-     * @param  null   $linkOverride
+     * @param string $link URL of the link
+     * @param string $display Part of the text to associate number with
+     * @param null $linkOverride
      * @return string
      */
     protected function buildlinkList($link, $display, $linkOverride = null)
@@ -549,7 +553,7 @@ class Html2Text
     /**
      * Callback function for preg_replace_callback use.
      *
-     * @param  array  $matches PREG matches
+     * @param array $matches PREG matches
      * @return string
      */
     protected function pregCallback($matches)
@@ -593,7 +597,7 @@ class Html2Text
     /**
      * Callback function for preg_replace_callback use in PRE content handler.
      *
-     * @param  array  $matches PREG matches
+     * @param array $matches PREG matches
      * @return string
      */
     protected function pregPreCallback(/** @noinspection PhpUnusedParameterInspection */ $matches)
@@ -604,7 +608,7 @@ class Html2Text
     /**
      * Strtoupper function with HTML tags and entities handling.
      *
-     * @param  string $str Text to convert
+     * @param string $str Text to convert
      * @return string Converted text
      */
     protected function toupper($str)
@@ -625,7 +629,7 @@ class Html2Text
     /**
      * Strtoupper multibyte wrapper function with HTML entities handling.
      *
-     * @param  string $str Text to convert
+     * @param string $str Text to convert
      * @return string Converted text
      */
     protected function strtoupper($str)
@@ -640,7 +644,7 @@ class Html2Text
     /**
      * Helper function for DEL conversion.
      *
-     * @param  string $text HTML content
+     * @param string $text HTML content
      * @return string Converted text
      */
     protected function tostrike($str)
@@ -648,7 +652,7 @@ class Html2Text
         $rtn = '';
         for ($i = 0; $i < mb_strlen($str); $i++) {
             $chr = mb_substr($str, $i, 1);
-            $combiningChr = chr(0xC0 | 0x336 >> 6). chr(0x80 | 0x336 & 0x3F);
+            $combiningChr = chr(0xC0 | 0x336 >> 6) . chr(0x80 | 0x336 & 0x3F);
             $rtn .= $chr . $combiningChr;
         }
         return $rtn;

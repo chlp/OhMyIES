@@ -1,11 +1,12 @@
 <?php
 
+namespace app;
+
 class Feed
 {
     private Db $db;
 
-    public function __construct(
-    )
+    public function __construct()
     {
         $this->db = Db::get();
     }
