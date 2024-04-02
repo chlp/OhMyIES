@@ -11,6 +11,7 @@
 
 <?php
 require __DIR__ . '/../app/bootstrap.php';
+var_dump((new \app\Feed())->getFeeds());
 ?>
 
 <h1>OhMyIES</h1>

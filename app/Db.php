@@ -28,7 +28,7 @@ class Db
         return $db;
     }
 
-    public function select(string $query, ?array $params): array
+    public function select(string $query, ?array $params = null): array
     {
         $stmt = $this->conn->prepare($query);
         if (!$stmt) {
@@ -38,7 +38,7 @@ class Db
         $stmt->execute();
         $stmtRes = $stmt->get_result();
         $result = [];
-        while ($row = $stmtRes->fetch_row()) {
+        while ($row = $stmtRes->fetch_assoc()) {
             $result[] = $row;
         }
         $stmt->close();
