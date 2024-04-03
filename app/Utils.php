@@ -46,4 +46,10 @@ class Utils
         $logFileName = date('YmdH') . '.log';
         file_put_contents(__DIR__ . '/../var/log/' . $logFileName, $msg, FILE_APPEND);
     }
+
+    static public function error($str, $code = 400): void
+    {
+        http_response_code($code);
+        die(json_encode(['error' => $str]));
+    }
 }

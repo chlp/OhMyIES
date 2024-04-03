@@ -11,7 +11,7 @@
 
 <?php
 require __DIR__ . '/../app/bootstrap.php';
-var_dump((new \app\Feed())->getFeeds());
+var_dump((new \app\Telegram())->sendMsg('-4135383525', 'test msg'));
 ?>
 
 <h1>OhMyIES</h1>
