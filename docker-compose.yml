@@ -22,8 +22,9 @@ services:
     ports:
       - "8081:80"
     volumes:
-      - ./public:/OhMyIES/public
       - ./app:/OhMyIES/app
+      - ./public:/OhMyIES/public
+      - ./var:/OhMyIES/var
       - ./conf.json:/OhMyIES/conf.json
     depends_on:
       - mysql

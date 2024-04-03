@@ -42,7 +42,8 @@ class Utils
             $msg .= ' (' . number_format(microtime(true) - $timer, 3, '.', '') . ')';
         }
         $msg .= ': ';
-        $msg .= $str;
-        error_log($msg);
+        $msg .= $str . "\n";
+        $logFileName = date('YmdH') . '.log';
+        file_put_contents(__DIR__ . '/../var/log/' . $logFileName, $msg, FILE_APPEND);
     }
 }

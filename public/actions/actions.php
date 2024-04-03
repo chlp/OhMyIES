@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../../app/bootstrap.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if (!in_array($_SERVER['REQUEST_METHOD'], ['POST', 'GET'])) {
     error('Method not allowed', 405);
 }
 
