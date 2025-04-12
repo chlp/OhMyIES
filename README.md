@@ -2,6 +2,8 @@
 
 **IES Student Telegram Notifier**
 
+![ohmyies](https://github.com/user-attachments/assets/e05f5f58-3fd4-45c9-9374-5a029f90cf51)
+
 OhMyIES is a Go application that automatically connects to the **SchoolSoft** system, fetches new messages, categorizes them, and sends them to specific Telegram chats.
 
 ## Features
