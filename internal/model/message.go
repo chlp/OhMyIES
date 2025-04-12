@@ -7,9 +7,9 @@ import (
 type MsgType string
 
 const (
+	MsgTypeLessonGeneral  MsgType = "general"
 	MsgTypeAttendance     MsgType = "attendance"
 	MsgTypeLessonPlanning MsgType = "lesson_planning"
-	MsgTypeLessonGeneral  MsgType = "general"
 )
 
 type Msg struct {

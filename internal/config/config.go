@@ -2,14 +2,29 @@ package config
 
 import (
 	"errors"
+	"ohmyies/internal/model"
 	"ohmyies/pkg/filestore"
 	"ohmyies/pkg/logger"
 	"os"
 )
 
 type Config struct {
-	LogFile string `json:"log_file"` // file where logs will be written
-	Debug   bool   `json:"debug"`    // write debug logs
+	LogFile string       `json:"log_file"` // file where logs will be written
+	Debug   bool         `json:"debug"`    // write debug logs
+	Feeds   []FeedConfig `json:"feeds"`    // list of feeds to fetch
+}
+
+type FeedConfig struct {
+	Name string       `json:"name"`
+	Key  string       `json:"key"`
+	Key2 string       `json:"key_2"`
+	Chat []ChatConfig `json:"chat"`
+}
+
+type ChatConfig struct {
+	Type        model.MsgType `json:"type"`
+	BotApiToken string        `json:"bot_api_token"`
+	ChatId      string        `json:"chat_id"`
 }
 
 const (

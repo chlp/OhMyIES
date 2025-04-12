@@ -1,0 +1,30 @@
+{
+  "log_file": "app.log",
+  "debug": true,
+  "feeds": [
+    {
+      "name": "IES V Absence",
+      "key": "444",
+      "key_2": "123",
+      "chat": [
+        {
+          "type": "markdown",
+          "bot_api_token": "5:ABC-444-zyx57W2v1u123ew11",
+          "chat_id": "66"
+        }
+      ]
+    },
+    {
+      "name": "IES Y Lesson Planning",
+      "key": "123",
+      "key_2": "555",
+      "chat": [
+        {
+          "type": "markdown",
+          "bot_api_token": "1:XYZ-DEF9876poiuy-123",
+          "chat_id": "-3341"
+        }
+      ]
+    }
+  ]
+}

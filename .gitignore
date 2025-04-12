@@ -1,3 +1,6 @@
 .DS_Store
 .idea
-conf.json
+
+app.log
+config.json
+feed_guids-*

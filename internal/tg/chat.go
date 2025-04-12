@@ -3,11 +3,12 @@ package tg
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"ohmyies/pkg/logger"
 	"strings"
+	"sync"
 )
 
 const sendMessageUrlTemplate = "https://api.telegram.org/bot%s/sendMessage?%s"
@@ -17,11 +18,27 @@ type Chat struct {
 	chatId      string
 }
 
+var chats = make(map[string]*Chat)
+var mu *sync.Mutex
+
 func NewChat(botApiToken, chatId string) *Chat {
-	return &Chat{
+	if mu == nil {
+		mu = &sync.Mutex{}
+	}
+
+	mu.Lock()
+	defer mu.Unlock()
+
+	if chat, ok := chats[chatId]; ok {
+		return chat
+	}
+
+	c := &Chat{
 		botApiToken: botApiToken,
 		chatId:      chatId,
 	}
+	chats[botApiToken+"_"+chatId] = c
+	return c
 }
 
 func (c *Chat) SendMessage(message string) bool {
@@ -37,7 +54,7 @@ func (c *Chat) SendMessage(message string) bool {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		logger.Printf("tg::SendMessage %s read error: %v", c.chatId, err)
 		return false
