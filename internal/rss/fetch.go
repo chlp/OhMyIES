@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"golang.org/x/net/html/charset"
+	"io"
 	"net/http"
 	"ohmyies/internal/model"
 	"ohmyies/pkg/logger"
@@ -63,12 +64,21 @@ func (f *Feed) fetch() ([]model.Msg, error) {
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode != http.StatusOK {
+		logger.Printf("rss::fetch. Unexpected status code: %d", resp.StatusCode)
+		return nil, fmt.Errorf("unexpected status code: %d", resp.StatusCode)
+	}
+
 	decoder := xml.NewDecoder(resp.Body)
 	decoder.CharsetReader = charset.NewReaderLabel
 
 	var feed feed
-	if err := decoder.Decode(&feed); err != nil {
+	if err = decoder.Decode(&feed); err != nil {
+		if err == io.EOF {
+			return nil, nil
+		}
 		logger.Printf("rss::fetch. Error parsing XML: %v", err)
+		return nil, err
 	}
 
 	if len(feed.Channel.Items) == 0 {
